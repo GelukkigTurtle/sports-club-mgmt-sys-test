@@ -59,7 +59,7 @@ To check the report, open the '/results/report.html' file once the execution has
 * Add a headless mode to run the tests faster or in a automated pipeline
 * Reporting can be enhanced using the Allure library
 
-# Exploratory Testing Results
+# Exploratory Testing Results (Exercise 1)
 ### UX Issues
 * Responsive mode hides the main menu, and it shows profile options, the profile Options are hardcoded
 * Side Menu can be collapsible
@@ -72,7 +72,8 @@ To check the report, open the '/results/report.html' file once the execution has
  "detail": "Handler dispatch failed; nested exception is java.lang.NoClassDefFoundError: Could not initialize class sun.awt.X11FontManager",'
 ```
 * All the forms does not have any constraints, it's necessary to add character limit, also to accept only numbers or decimals for PAYMENTS.
-* When the users tries to save an payment with string, the application throws the following error:
+* When the user tries to save a payment with a string, the application throws the following error:
+
 ```bash
 "detail": "JSON parse error: Cannot deserialize value of type `java.math.BigDecimal` 
 from String \"cnadjncdancjad\": not a valid representation; 
@@ -83,4 +84,8 @@ nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: C
 * In all the forms, whenever the user adds a new record, it is being added at the end of the table, and pages, causing the user to make more calls to the API, harming the performance of the application, a simple solution could be to sort the lists from recent records to old records
 * On the partners screen, the View Details 3 dots menu option does not work
 
+# Suggestions (Exercise 2)
+* Add constraints to all the inputs on each of the forms, reason: the errors on API calls for these forms will be reduced due previous validation, and the application data will be more accurate
+* Order the tables lists from resents records to old records, reason: it will reduce the number of API calls when clicking pagination to find the new records created, improving the application performance
+* The tables filters and sorting can be added to the columns, reason: it improves the user experience, having those actions as a web application standards
 #### By: Freddy Ayala
