@@ -24,6 +24,8 @@ The automation solution uses the Page-Object model, having separate files per mo
 5. Activate the virtual environment: 
    - `. venv/bin/activate`
 6. Download libraries:  `pip install -r requirements.txt`
+7. If needed, install the Faker Library: `pip install Faker`
+
  
 # Execute Tests
 
@@ -49,10 +51,36 @@ By default, tests will be executed in Chrome (normal mode). Preferences can be c
 # Results
 To check the report, open the '/results/report.html' file once the execution has finished.
 
-## Future Enhancements
+![](output.gif)
+
+## Future Automation Enhancements
 * Have a default .env file with the application credentials and URLs, this can be encrypted for better security
 * The Data can be validated through API to confirm data creation 
 * Add a headless mode to run the tests faster or in a automated pipeline
 * Reporting can be enhanced using the Allure library
+
+# Exploratory Testing Results
+### UX Issues
+* Responsive mode hides the main menu, and it shows profile options, the profile Options are hardcoded
+* Side Menu can be collapsible
+* On the Dashboard screen, the chart of total contributions is overflowing the panel
+
+### UI Issues
+* On the Report screen, the Exporting button does not work, action throws an API error:
+```bash
+'500 Internal server Error ->    
+ "detail": "Handler dispatch failed; nested exception is java.lang.NoClassDefFoundError: Could not initialize class sun.awt.X11FontManager",'
+```
+* All the forms does not have any constraints, it's necessary to add character limit, also to accept only numbers or decimals for PAYMENTS.
+* When the users tries to save an payment with string, the application throws the following error:
+```bash
+"detail": "JSON parse error: Cannot deserialize value of type `java.math.BigDecimal` 
+from String \"cnadjncdancjad\": not a valid representation; 
+nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.math.BigDecimal` from String \"cnadjncdancjad\": not a valid representation\n at [Source: (PushbackInputStream); line: 1, column: 41] (through reference chain: uy.com.club.administration.dto.request.ContributionSuggestedDTO[\"amount\"])",
+```
+* When the length of a category/sub category/ members and all the name inputs exceeds 300 characters, the 3 dots menu is not visible and the record it cannot be modified or deleted
+* When adding Inactive members and partners, They are not displayed in the table, they cannot be modified and deleted
+* In all the forms, whenever the user adds a new record, it is being added at the end of the table, and pages, causing the user to make more calls to the API, harming the performance of the application, a simple solution could be to sort the lists from recent records to old records
+* On the partners screen, the View Details 3 dots menu option does not work
 
 #### By: Freddy Ayala
